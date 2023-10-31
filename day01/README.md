@@ -9,11 +9,15 @@ From all this magic setup, the Cygnified AoC-engine can create a valid image and
 Shell scripting is fun and all, but we have provided examples for many different languages to get you up and running with your favourite weapons, have a look [here](../examples)
 
 ### How to build
+
 `docker build -t aoc01 .`
 
 ### How to run
+
 The environment variable `part` specifies which part of the solution to run.
 
 `docker run -e part=part1 aoc01`
 
 **As this is just a template**, all that `part1` and `part2` does is to print the first and last line of `input.txt`, respectively. For a more realistic example, have a look [here](../examples).
+
+test
