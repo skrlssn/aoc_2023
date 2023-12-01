@@ -1,23 +1,24 @@
-## Day 1 solution template
+# C# (.NET 7)
+When Microsoft got into trouble for trying to take over Java (embrace and extend), they needed a new strategy for getting a "serious" language onto the Windows platform since Visual Basic was considered to be a bit of a toy. So C# came out looking almost identical to Java and James Gosling (creator of Java) said that "[C# is] sort of Java with reliability, productivity and security deleted." In return, Anders Hejlsberg (creator of C#) claimed that C# is much closer to C++ in its design and that the flaws of major modern languages (e.g. C++, Java, Delphi and Smalltalk) were the driving forces for creating the CLR and C# itself (fair enough, Java is also inspired by C++ and Smalltalk). Since 2005, Java and C# have diverged and become more different from each other. Ironically, Visual Basic is still the most productive language in .NET.
 
-This shows the basics of the setup needed to participate in the Cygnified AoC with your solution for a given day (in this case day 1 because we are in the `day01` directory). **The directory structure is important.**
+To run the code locally, you will need to install [latest .NET](https://dotnet.microsoft.com/download).
 
-The setup must include a `Dockerfile` that includes the solution source code. Your `Dockerfile` must include a `COPY` statement that copies `input.txt` (and possibly other files) from the root of `day02` (in this case) into your image. That is, we will use your individual `puzzle input` provided by Advent of Code when analysing your solution.
+## How to run tests
+Open a terminal in this directory and type `dotnet test`.
 
-From all this magic setup, the Cygnified AoC-engine can create a valid image and you're in the game (and that's awesome).
+## How to build and run
+To run locally, type for example:
+```bash
+part=part1 dotnet run
+part=part2 dotnet run
+```
 
-Shell scripting is fun and all, but we have provided examples for many different languages to get you up and running with your favourite weapons, have a look [here](../examples)
+## Docker
+According to the [Cygni AoC procedure](https://github.com/cygni/aoc_example).
 
-### How to build
-
-`docker build -t aoc01 .`
-
-### How to run
-
-The environment variable `part` specifies which part of the solution to run.
-
-`docker run -e part=part1 aoc01`
-
-**As this is just a template**, all that `part1` and `part2` does is to print the first and last line of `input.txt`, respectively. For a more realistic example, have a look [here](../examples).
-
-test
+Type for example:
+```bash
+docker build -t aoc_csharp .
+docker run --rm -e part=part1 aoc_csharp
+docker run --rm -e part=part2 aoc_csharp
+```
