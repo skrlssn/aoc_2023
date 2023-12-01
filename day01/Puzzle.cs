@@ -1,7 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Security.Principal;
-using Xunit.Sdk;
-
 namespace aoc;
 
 public static class Puzzle
@@ -11,30 +7,16 @@ public static class Puzzle
         var allDigits = new List<int>();
         foreach (var row in input)
         {
-            var number = string.Empty;
-            // first digit
-            for (int i = 0; i < row.Length; i++)
-            {
-                if (int.TryParse(row[i].ToString(), out _))
-                {
-                    number += row[i];
-                    break;
-                }
-            }
-            // find second digit
-            for (int i = row.Length - 1; i >= 0; i--)
-            {
-                if (int.TryParse(row[i].ToString(), out _))
-                {
-                    number += row[i];
-                    break;
-                }
-            }
-            // add do big list
-            allDigits.Add(int.Parse(number));
+            var firstDigit = row.FirstOrDefault(c => int.TryParse(c.ToString(), out _));
+            var lastDigit = row.LastOrDefault(c => int.TryParse(c.ToString(), out _));
+
+            allDigits.Add(int.Parse(firstDigit.ToString() + lastDigit.ToString()));
         }
         return allDigits.Sum();
     }
 
-    public static int GetSolutionPart2(IEnumerable<string> input) => 1;
+    public static int GetSolutionPart2(IEnumerable<string> input)
+    {
+        return 1;
+    }
 }
