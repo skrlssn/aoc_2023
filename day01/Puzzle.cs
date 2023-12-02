@@ -1,8 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
 using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestPlatform.CoreUtilities.Extensions;
 
 namespace aoc;
 
@@ -24,8 +20,10 @@ public static class Puzzle
     public static int GetSolutionPart2(IEnumerable<string> input)
     {
         string pattern = @"(?:[1-9]|one|two|three|four|five|six|seven|eight|nine)";
+
         Regex regexFirst = new Regex(pattern);
         Regex regexLast = new Regex(pattern, RegexOptions.RightToLeft);
+
         Dictionary<string, string> numberDict = new Dictionary<string, string>
         {
             {"one", "1"},
@@ -49,14 +47,14 @@ public static class Puzzle
             string firstDigit = matchesFromLeft.First().ToString();
             string lastDigit = matchesFromRight.First().ToString();
 
-            if (numberDict.ContainsKey(firstDigit))
+            if (numberDict.TryGetValue(firstDigit, out string? firstValue))
             {
-                firstDigit = numberDict[firstDigit];
+                firstDigit = firstValue;
             }
 
-            if (numberDict.ContainsKey(lastDigit))
+            if (numberDict.TryGetValue(lastDigit, out string? lastValue))
             {
-                lastDigit = numberDict[lastDigit];
+                lastDigit = lastValue;
             }
 
             int number = int.Parse(firstDigit + lastDigit);
